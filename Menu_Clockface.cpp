@@ -47,7 +47,7 @@ void ClockfaceMenu::button1() {
   do {
   faceType = (faceType + 1) % FACE_MAX;
   } while (!(state.enabled_faces & _BV(faceType)));
-  changeMenu();
+  //changeMenu();
 }
 
 void ClockfaceMenu::changeMenu() {
