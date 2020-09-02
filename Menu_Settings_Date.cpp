@@ -25,6 +25,10 @@ void SettingsDateMenu::button1() {
   selection = (selection + 1) % 7;
 }
 
+void SettingsDateMenu::button3() {
+  selection = (selection - 1) % 7;
+}
+
 void SettingsDateMenu::button2() {
   if (selection == 6) {
     switchMenu(MENU_SETTINGS);
@@ -53,7 +57,7 @@ void SettingsDateMenu::button2() {
 }
 
 void SettingsDateMenu::draw(Adafruit_GFX* display) const {
-  drawLayout(display, F("Set Date"));
+  drawLayout(display, F("Date"));
 
   // Date text
   display->setTextSize(2);
@@ -92,4 +96,3 @@ void SettingsDateMenu::draw(Adafruit_GFX* display) const {
   display->setCursor(5, 54);
   display->print(F("Back"));
 }
-
