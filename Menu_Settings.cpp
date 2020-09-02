@@ -19,10 +19,9 @@ enum Items {
   ITEM_TIME,
   ITEM_DATE,
   ITEM_BRIGHT,
-  ITEM_CLOCKFACE,
   ITEM_BACK,
 
-  ITEM_MAX,
+  ITEM_MAX
 };
 
 SettingsMenu::SettingsMenu()
@@ -38,6 +37,10 @@ void SettingsMenu::button1() {
   selection = (selection + 1) % ITEM_MAX;
 }
 
+void SettingsMenu::button3() {
+  selection = (selection - 1) % ITEM_MAX;
+}
+
 void SettingsMenu::button2() {
   if (selection == ITEM_BACK) {
     switchMenu(MENU_CLOCK);
@@ -49,16 +52,16 @@ void SettingsMenu::button2() {
     switchMenu(MENU_SETTINGS_DATE);
   } else if (selection == ITEM_BRIGHT) {
     switchMenu(MENU_SETTINGS_BRIGHTNESS);
-  } else if (selection == ITEM_CLOCKFACE) {
-    switchMenu(MENU_SETTINGS_CLOCKFACE);
-  }
+  }// else if (selection == ITEM_CLOCKFACE) {
+    //switchMenu(MENU_SETTINGS_CLOCKFACE);
+ // }
 }
 
 void SettingsMenu::draw(Adafruit_GFX* display) const {
   drawLayout(display, F("Settings"));
 
   // Menu Items
-  uint8_t offset = selection < 3 ? 0 : 1;
+  uint8_t offset = selection < 3 ? 0 : 0;
   for (uint8_t i = offset; i < min(offset + 5, ITEM_MAX); ++i) {
     display->setCursor(5, 13 + ((i - offset) * 10));
     if (selection == i) {
@@ -83,13 +86,13 @@ void SettingsMenu::draw(Adafruit_GFX* display) const {
     case ITEM_BRIGHT:
       display->print(F("Set Brightness"));
       break;
-    case ITEM_CLOCKFACE:
-      display->print(F("Disable Clockfaces"));
-      break;
+ //   case ITEM_CLOCKFACE:
+   //   display->print(F("Disable Clockfaces"));
+    //  break;
     case ITEM_BACK:
       display->print(F("Back"));
       break;
     }
   }
+  
 }
-
