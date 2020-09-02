@@ -82,4 +82,3 @@ void SettingsTimeMenu::draw(Adafruit_GFX* display) const {
   display->setCursor(5, 54);
   display->print(F("Back"));
 }
-
