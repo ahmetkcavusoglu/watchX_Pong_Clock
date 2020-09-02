@@ -44,10 +44,17 @@ void ClockfaceMenu::draw(Adafruit_GFX* display) const {
 }
 
 void ClockfaceMenu::button1() {
-  do {
+ /* do {
   faceType = (faceType + 1) % FACE_MAX;
   } while (!(state.enabled_faces & _BV(faceType)));
-  //changeMenu();
+  //changeMenu(); */
+}
+
+void ClockfaceMenu::button3() {
+/*  do {
+  faceType = (faceType - 1) % FACE_MAX;
+  } while (!(state.enabled_faces & _BV(faceType)));
+  //changeMenu(); */
 }
 
 void ClockfaceMenu::changeMenu() {
