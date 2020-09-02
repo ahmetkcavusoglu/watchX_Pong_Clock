@@ -22,21 +22,26 @@ void Settings24hMenu::button1() {
   state.save();
 }
 
+void Settings24hMenu::button3() {
+  state.mode24h = !state.mode24h;
+  state.save();
+}
+
 void Settings24hMenu::button2() {
   switchMenu(MENU_SETTINGS);
 }
 
 void Settings24hMenu::draw(Adafruit_GFX* display) const {
-  drawLayout(display, F("12/24hr mode"));
+  drawLayout(display, F("12/24h"));
 
   // Selector
   display->setTextColor(WHITE);
   display->setTextSize(2);
   display->setCursor(40, 23);
   if (state.mode24h) {
-    display->print(F("24hr"));
+    display->print(F("24h"));
   } else {
-    display->print(F("12hr"));
+    display->print(F("12h"));
   }
   display->fillTriangle(
     (WIDTH / 2)    , 15,
@@ -49,4 +54,3 @@ void Settings24hMenu::draw(Adafruit_GFX* display) const {
     (WIDTH / 2) - 5, 40,
     WHITE);
 }
-
