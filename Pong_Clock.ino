@@ -103,9 +103,9 @@ void setSleepStatusBasedonUSB() {
     progMode=10;
    
     if (count >= 6500) {
-      delay(500);     // this delay is needed, the sleep
+    /*  delay(500);     // this delay is needed, the sleep
       count = 0;
-      sleepNow();
+      sleepNow(); */
     }
     if (digitalRead(PREV_PIN) == 0) {
       display.ssd1306_command(SSD1306_DISPLAYON);
