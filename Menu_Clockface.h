@@ -25,6 +25,7 @@ public:
   void draw(Adafruit_GFX* display) const;
   void button1();
   void button2();
+  void button3();
 private:
   void changeMenu();
   Clockface* face;
