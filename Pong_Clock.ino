@@ -21,7 +21,7 @@
 #include <Adafruit_SSD1306.h>
 #include <EnableInterrupt.h>
 #include <avr/sleep.h>
-
+#include <avr/power.h>
 #include "Buttons.h"
 #include "Menu.h"
 #include "Menu_Settings.h"
@@ -76,7 +76,7 @@ State state;
 Menu* menu = NULL;
 
 bool IsUSBConnected() {
-  return (UDADDR & _BV(ADDEN));
+  return (USBSTA&(1<<VBUS));
 }
 
 void interruptFunction() {
@@ -87,20 +87,25 @@ void sleepNow()
 {
   lastButtonState=LOW;
   display.ssd1306_command(SSD1306_DISPLAYOFF);
+  power_adc_disable();
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
   enableInterrupt(PREV_PIN, interruptFunction, CHANGE);
+  sleep_cpu();
   sleep_mode();            
   sleep_disable();   
   disableInterrupt(PREV_PIN); 
+  power_adc_enable();
 }
 
 void setSleepStatusBasedonUSB() {
   if (IsUSBConnected()) { // check if USB is connected.
     progMode=10;
    
-    if (count >= 6500) {
+    if (count >= 3500) {
+      delay(500);     // this delay is needed, the sleep
       count = 0;
-     // display.ssd1306_command(SSD1306_DISPLAYOFF);
+      sleepNow();
     }
     if (digitalRead(PREV_PIN) == 0) {
       display.ssd1306_command(SSD1306_DISPLAYON);
@@ -114,7 +119,7 @@ void setSleepStatusBasedonUSB() {
       // usbtime = rtc.now();
       
  //   }
-    if (count >= 6500) {
+    if (count >= 3500) {
       delay(500);     // this delay is needed, the sleep
       count = 0;
       sleepNow();     // sleep function called here
