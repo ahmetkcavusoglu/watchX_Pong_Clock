@@ -40,8 +40,8 @@ bool Menu::update() {
       return ((SettingsDateMenu*)this)->update();
     case MENU_SETTINGS_BRIGHTNESS:
       return ((SettingsBrightnessMenu*)this)->update();
-    case MENU_SETTINGS_CLOCKFACE:
-      return ((SettingsClockfaceMenu*)this)->update();
+  //  case MENU_SETTINGS_CLOCKFACE:
+    //  return ((SettingsClockfaceMenu*)this)->update();
     case MENU_CLOCK:
       return ((ClockfaceMenu*)this)->update();
   }
@@ -64,9 +64,9 @@ void Menu::draw(Adafruit_GFX* display) const {
     case MENU_SETTINGS_BRIGHTNESS:
       ((SettingsBrightnessMenu*)this)->draw(display);
       return;
-    case MENU_SETTINGS_CLOCKFACE:
-      ((SettingsClockfaceMenu*)this)->draw(display);
-      return;
+  //  case MENU_SETTINGS_CLOCKFACE:
+    //  ((SettingsClockfaceMenu*)this)->draw(display);
+    //  return;
     case MENU_CLOCK:
       ((ClockfaceMenu*)this)->draw(display);
       return;
@@ -85,10 +85,29 @@ void Menu::button1() {
       return ((SettingsDateMenu*)this)->button1();
     case MENU_SETTINGS_BRIGHTNESS:
       return ((SettingsBrightnessMenu*)this)->button1();
-    case MENU_SETTINGS_CLOCKFACE:
-      return ((SettingsClockfaceMenu*)this)->button1();
+    //case MENU_SETTINGS_CLOCKFACE:
+      //return ((SettingsClockfaceMenu*)this)->button1();
     case MENU_CLOCK:
       return ((ClockfaceMenu*)this)->button1();
+  }
+}
+
+void Menu::button3() {
+  switch(type) {
+    case MENU_SETTINGS:
+      return ((SettingsMenu*)this)->button3();
+    case MENU_SETTINGS_24H:
+      return ((Settings24hMenu*)this)->button3();
+    case MENU_SETTINGS_TIME:
+      return ((SettingsTimeMenu*)this)->button3();
+    case MENU_SETTINGS_DATE:
+      return ((SettingsDateMenu*)this)->button3();
+    case MENU_SETTINGS_BRIGHTNESS:
+      return ((SettingsBrightnessMenu*)this)->button3();
+    //case MENU_SETTINGS_CLOCKFACE:
+      //return ((SettingsClockfaceMenu*)this)->button3();
+    case MENU_CLOCK:
+      return ((ClockfaceMenu*)this)->button3();
   }
 }
 
@@ -104,8 +123,8 @@ void Menu::button2() {
       return ((SettingsDateMenu*)this)->button2();
     case MENU_SETTINGS_BRIGHTNESS:
       return ((SettingsBrightnessMenu*)this)->button2();
-    case MENU_SETTINGS_CLOCKFACE:
-      return ((SettingsClockfaceMenu*)this)->button2();
+    //case MENU_SETTINGS_CLOCKFACE:
+      //return ((SettingsClockfaceMenu*)this)->button2();
     case MENU_CLOCK:
       return ((ClockfaceMenu*)this)->button2();
   }
@@ -151,9 +170,9 @@ void updateMenuSelection() {
     case MENU_SETTINGS_BRIGHTNESS:
       menu = new SettingsBrightnessMenu();
       break;
-    case MENU_SETTINGS_CLOCKFACE:
-      menu = new SettingsClockfaceMenu();
-      break;
+    //case MENU_SETTINGS_CLOCKFACE:
+      //menu = new SettingsClockfaceMenu();
+      //break;
     case MENU_CLOCK:
       menu = new ClockfaceMenu();
       break;
@@ -196,4 +215,3 @@ void Menu::drawLayout(Adafruit_GFX* display, const __FlashStringHelper* title) c
   }
   display->print(buff);
 }
-
