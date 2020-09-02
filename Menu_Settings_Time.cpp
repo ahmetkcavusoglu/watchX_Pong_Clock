@@ -26,6 +26,10 @@ void SettingsTimeMenu::button1() {
   selection = (selection + 1) % 5;
 }
 
+void SettingsTimeMenu::button3() {
+  selection = (selection - 1) % 5;
+}
+
 void SettingsTimeMenu::button2() {
   if (selection == 4) {
     switchMenu(MENU_SETTINGS);
