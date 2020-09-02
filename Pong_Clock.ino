@@ -102,7 +102,7 @@ void setSleepStatusBasedonUSB() {
   if (IsUSBConnected()) { // check if USB is connected.
     progMode=10;
    
-    if (count >= 3500) {
+    if (count >= 6500) {
       delay(500);     // this delay is needed, the sleep
       count = 0;
       sleepNow();
@@ -119,7 +119,7 @@ void setSleepStatusBasedonUSB() {
       // usbtime = rtc.now();
       
  //   }
-    if (count >= 3500) {
+    if (count >= 6500) {
       delay(500);     // this delay is needed, the sleep
       count = 0;
       sleepNow();     // sleep function called here
