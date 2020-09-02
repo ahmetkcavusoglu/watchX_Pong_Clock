@@ -11,7 +11,7 @@ enum Menu_selection {
   MENU_SETTINGS_TIME,
   MENU_SETTINGS_DATE,
   MENU_SETTINGS_BRIGHTNESS,
-  MENU_SETTINGS_CLOCKFACE,
+ // MENU_SETTINGS_CLOCKFACE,
 
   MENU_MAX
 };
@@ -23,6 +23,7 @@ public:
   void draw(Adafruit_GFX* display) const;
   void button1();
   void button2();
+  void button3();
 
   Menu_selection getType() const { return type; }
 protected:
