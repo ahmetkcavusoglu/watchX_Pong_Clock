@@ -52,6 +52,7 @@ int progMode=1;
 
 Button btnNext(NEXT_PIN);
 Button btnSelect(SELECT_PIN);
+Button btnPrev (PREV_PIN);
 Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
 RTC_DS1307 RTC;
 
@@ -63,6 +64,9 @@ RTC_DS1307 RTC;
 
 void buttonNextPressed() {
   btnNext.interrupt();
+}
+void buttonPrevPressed() {
+  btnPrev.interrupt();
 }
 void buttonSelectPressed() {
   btnSelect.interrupt();
@@ -133,6 +137,7 @@ void setup(void) {
 
   // Setup buttons
   pinMode(NEXT_PIN, INPUT_PULLUP);
+  pinMode(PREV_PIN, INPUT_PULLUP);
   pinMode(SELECT_PIN, INPUT_PULLUP);
   //attachInterrupt(0, buttonSelectPressed, LOW);
   //attachInterrupt(1, buttonNextPressed, LOW);
@@ -142,14 +147,8 @@ void setup(void) {
   display.setTextColor(WHITE);
   display.setCursor(5, 20);
   display.print(F("Pong Clock"));
-  display.setTextSize(1);
-  display.setCursor(66, 48);
-  display.print(F("by 0miker0"));
-  display.setCursor(78, 56);
-  display.print(F("& mic159"));
   display.display();
   delay(2000);
-
   // Load things from state
   display.dim(state.dim);
 
@@ -188,6 +187,10 @@ void loop() {
   // Buttons
   if (btnNext.update() && btnNext.read()) {
     menu->button1();
+    draw = true;
+  }
+  if (btnPrev.update() && btnPrev.read()) {
+    menu->button3();
     draw = true;
   }
   if (btnSelect.update() && btnSelect.read()) {
