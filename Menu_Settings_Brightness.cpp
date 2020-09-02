@@ -32,6 +32,10 @@ void SettingsBrightnessMenu::button1() {
   selection = (selection + 1) % ITEM_MAX;
 }
 
+void SettingsBrightnessMenu::button3() {
+  selection = (selection - 1) % ITEM_MAX;
+}
+
 void SettingsBrightnessMenu::button2() {
   if (selection == ITEM_BACK) {
     switchMenu(MENU_SETTINGS);
@@ -47,7 +51,7 @@ void SettingsBrightnessMenu::button2() {
 }
 
 void SettingsBrightnessMenu::draw(Adafruit_GFX* display) const {
-  drawLayout(display, F("Brightness"));
+  drawLayout(display, F("Bright"));
 
   // Menu Items
   for (uint8_t i = 0; i < ITEM_MAX; ++i) {
@@ -76,4 +80,3 @@ void SettingsBrightnessMenu::draw(Adafruit_GFX* display) const {
     }
   }
 }
-
