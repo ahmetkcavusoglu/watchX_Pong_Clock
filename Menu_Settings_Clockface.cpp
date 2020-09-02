@@ -1,4 +1,4 @@
-#include <Arduino.h>
+/* #include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "Menu_Settings_Clockface.h"
@@ -24,6 +24,10 @@ void SettingsClockfaceMenu::button1() {
   selection = (selection + 1) % (FACE_MAX+1);
 }
 
+void SettingsClockfaceMenu::button3() {
+  selection = (selection - 1) % (FACE_MAX+1);
+}
+
 void SettingsClockfaceMenu::button2() {
   if (selection == FACE_MAX) {
     switchMenu(MENU_SETTINGS);
@@ -34,7 +38,7 @@ void SettingsClockfaceMenu::button2() {
 }
 
 void SettingsClockfaceMenu::draw(Adafruit_GFX* display) const {
-  drawLayout(display, F("Clockfaces"));
+  drawLayout(display, F("Clock"));
 
   // Menu Items
   for (uint8_t i = 0; i < FACE_MAX+1; ++i) {
@@ -72,4 +76,4 @@ void SettingsClockfaceMenu::draw(Adafruit_GFX* display) const {
       }
     }
   }
-}
+} */
